@@ -25,7 +25,7 @@ SECRET_KEY = 'uw958w4^$eqjz+7bi2-&ya@b_yno-p$__6u4&$a(v-5mc_*^jx'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['139.59.24.126', 'localhost']
+ALLOWED_HOSTS = ['134.209.149.148', 'localhost','www.gopython.in','gopython.in']
 
 
 # Application definition
