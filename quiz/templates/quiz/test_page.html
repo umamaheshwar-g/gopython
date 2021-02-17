@@ -1,0 +1,919 @@
+
+<html>
+
+<head>
+{% load static %}
+
+<!-- load js, css locally -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/media/bootstrap-4.5.0-dist/js/bootstrap.js"></script>
+<link rel="stylesheet" href="/media/bootstrap-4.5.0-dist/css/bootstrap.css">
+
+<script src="/media/skulpt/skulpt.min.js" type="text/javascript"></script> 
+<script src="/media/skulpt/skulpt-stdlib.js" type="text/javascript"></script> 
+<link rel="stylesheet" href="/media/codemirror-5.55.0/lib/codemirror.css" />
+
+<script src="/media/codemirror-5.55.0/lib/codemirror.js" ></script>
+    
+<script src="/media/codemirror-5.55.0/mode/python/python.js" ></script>
+
+
+<!-- load js,css from cdn -->
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+
+<script src="http://www.skulpt.org/js/skulpt.min.js" type="text/javascript"></script> 
+<script src="http://www.skulpt.org/js/skulpt-stdlib.js" type="text/javascript"></script> 
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.55.0/codemirror.min.css" integrity="sha256-Ez4TnBJ24JkU8Z622YHGxDaYrslkqNZ62ewvn08Skco=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.55.0/codemirror.min.js" integrity="sha256-mJzk4v0bH1QRcSptKBVrfFiEqYV5sV44X91CGq0/qE8=" crossorigin="anonymous"></script>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.55.0/mode/python/python.min.js" integrity="sha256-mPLW7jZKx6fDRErUCOj+/UF+4kJ8ljNe8t9iuypKF0Q=" crossorigin="anonymous"></script> -->
+
+<title>Gridlex Test</title>
+<style type="text/css">
+
+  h1, h2, h3, h4, h5, h6,pre {
+  font-family: "Times New Roman", Times;
+  }
+  body {
+  font-family: "Times New Roman", Times;
+    }
+</style>
+
+<head>
+
+<body style="overflow-x: hidden;">
+
+<script>
+function fullscreenfunction(){
+var elem = document.getElementById("exam_window");
+
+if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.mozRequestFullScreen) { /* Firefox */
+    elem.mozRequestFullScreen();
+  } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE/Edge */
+    elem.msRequestFullscreen();
+  }
+
+
+};
+
+
+
+document.addEventListener("fullscreenchange", function() {
+  console.log("FULL screen change wvent fired 1");
+  document.getElementById("modal_text").innerHTML='Do you really want to exit full screen. This will end the test and you cant come back again'
+  $("#myModal").modal('show');
+  /*alert("Your test will end do you really want to exit full screen? 1");
+  if(confirm("Press yes/no")==false){
+        fullscreenfunction();
+    }*/
+});
+
+document.addEventListener("mozfullscreenchange", function() {
+  console.log("FULL screen change wvent fired 2");
+  alert("Your test will end do you really want to exit full screen? 2");
+});
+
+document.addEventListener("webkitfullscreenchange", function() {
+  console.log("FULL screen change wvent fired 3");
+  alert("Your test will end do you really want to exit full screen? 3");
+});
+
+document.addEventListener("msfullscreenchange", function() {
+  console.log("FULL screen change wvent fired 4");
+  alert("Your test will end do you really want to exit full screen? 4");
+});
+
+</script>
+
+<style>
+
+
+
+
+
+*{font-family: 'Roboto', sans-serif;}
+
+@keyframes click-wave {
+  0% {
+    height: 40px;
+    width: 40px;
+    opacity: 0.35;
+    position: relative;
+  }
+  100% {
+    height: 200px;
+    width: 200px;
+    margin-left: -80px;
+    margin-top: -80px;
+    opacity: 0;
+  }
+}
+
+.option-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  position: relative;
+  top: 13.33333px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 40px;
+  width: 40px;
+  transition: all 0.15s ease-out 0s;
+  background: #cbd1d8;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 0.5rem;
+  outline: none;
+  position: relative;
+  z-index: 1000;
+}
+.option-input:hover {
+  background: #9faab7;
+}
+.option-input:checked {
+  background: #27abd8;
+}
+.option-input:checked::before {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  content: '✔';
+  display: inline-block;
+  font-size: 26.66667px;
+  text-align: center;
+  line-height: 40px;
+}
+/*.option-input:checked::after {
+  -webkit-animation: click-wave 0.65s;
+  -moz-animation: click-wave 0.65s;
+  animation: click-wave 0.65s;
+  background: #40e0d0;
+  content: '';
+  display: block;
+  position: relative;
+  z-index: 100;
+}*/
+.option-input.radio {
+  border-radius: 50%;
+}
+.option-input.radio::after {
+  border-radius: 50%;
+}
+.exam_window_bg {
+    background: #ecf0f1;
+    margin: 0;
+    padding: 0;
+}
+.timer_style{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+</style>
+
+
+
+<!-- Modal starts -->
+
+<div class="modal" id="myModal" data-backdrop="static">
+    <div class="modal-dialog" >
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title" id='modal_text'>Do you really want to exit full screen. This will end the test and you cant come back again.</h4>
+<!--           <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+        </div>
+        
+        <!-- Modal body -->
+<!--         <div class="modal-body">
+          Modal body..
+        </div> -->
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <a href="/exam/end/" type="button" class="btn btn-danger "  onclick = "if (! confirm('Do you want to end test?')) { return false; }">End Test</a>
+
+          <button type="button" class="btn btn-success" data-dismiss="modal" onclick="fullscreenfunction()">close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+<!-- Modal ends -->
+
+
+
+
+<div id="exam_window" class="container-fluid exam_window_bg " style="overflow-y: auto; overflow-x:hidden">
+<div class="row h-100" >
+<div class="col-sm-3 bg-dark" >
+
+<div class="nav_buttons_group  p-3 " id='nav_buttons'>
+<span>
+<a class="navbar-brand" href="{% url 'index' %}">
+        <img src="/images/lexlogo.png"  alt="GRIDLEX" />
+</a>
+</span>
+  <br>
+  <br>
+
+    {% for key,val in questions_dict.items %}
+    <h3><span class="badge badge-primary">{{key}}</span></h3>
+    <div class="btn-toolbar" role="toolbar" >
+          <div class=" mr-2" role="group" >
+           {% for i in val %}
+           {% with forloop.counter|stringformat:"s" as numb%}
+            <button 
+            type="button"  
+            class="btn  m-1 btn-light" 
+            id="{{key|add:'_'|add:numb}}" 
+            onclick="get_question('{{key}}',{{forloop.counter}}),load_full_screen()">
+            {{forloop.counter}}</button>
+            {% endwith %}
+            {% endfor %}
+          </div>
+    </div>
+<br>
+    {% endfor %}
+</div>
+</div>
+
+<div  class="col-sm-9" overflow-y:auto;>
+  <br>
+  <h1 class="timer_style">
+    <div class="row">
+      <span class="badge badge-success shadow-lg p-3 m-3 rounded" >
+        Time left =  <span id="timer" ></span>
+      </span>
+      <span id="response_status" class="badge badge-success shadow-lg p-3 m-3 rounded" >
+        Status
+      </span>
+      <span id="marks" class="badge  shadow-lg p-3 m-3 rounded" style="background-color:#FFFC00;color: black">
+        Marks-
+      </span>
+    </div>
+  </h1>
+
+
+
+<div class="shadow p-3 m-3 bg-white rounded" >
+<param id='question_card' value="{{question_id}}" name="question_card">
+<param id='answer_type' value="{{question_id}}" name="answer_type">
+
+    <div class="card border-0">
+        <div class="card-header border-0">  
+            <div id='question_image'>
+                <img  src="" class="img-fluid" ><br>
+            </div>
+            <div >
+              <h4><pre id="question_text",name="question_text">
+              {{question_text}}
+              </pre></h4>
+            </div>
+        </div>
+<!--                       <input type="radio" class="option-input radio"  id="option"  name="option" value="{{forloop.counter}}"> -->      
+      <div class = "card-body">
+                <!-- <h4>Select Your Answer</h4> -->
+                <h4>{{hint}}</h4>
+              <form id="options">
+<!--                 {% for i in options %}
+
+                      <input type="radio" class="option-input radio"  id="radio_{{forloop.counter }}" name="option" value="{{forloop.counter}}">
+
+                      <label id="option{{forloop.counter }}" name="option{{forloop.counter }}">{{i}}</label><br>
+                {% endfor %} -->
+              </form>
+      </div>
+            <!-- <div  id="response_status" style="color:red;"></div> -->
+
+<br>
+
+</div>
+</div>
+    <div class="shadow p-3 m-3 bg-white rounded" >
+      <h1 >
+
+            <span><button type="button" id='previous_button' class="btn btn-primary "
+            onclick="previous_question()">Previous</button></span>
+            <button type="button" id='next_button'class="btn btn-primary "
+            onclick="next_question()">Next</button>
+            <a href="/exam/end/" style="float: right;" type="button" class="btn btn-danger "  onclick = "if (! confirm('Do you want to end test?')) { return false; }">End Test</a>
+
+      </h1>
+            <span id="previous_next_status" style="color: red"></span>
+
+    </div>
+</div>
+<br>
+</div>
+</div>
+
+
+<script type="text/javascript">
+// script to load first question by default
+    $(document).ready(function() {
+    var header = document.getElementById("nav_buttons");
+    var btns = header.getElementsByTagName("button");
+    btns[0].click()
+    });
+</script>
+
+
+<script type="text/javascript">
+  //script to load test page in full screen mode
+  $(document).ready(function(){
+    $("#options").change(function (event) {
+    document.getElementById('exam_window').requestFullscreen();
+      // alert( "Fullscreen mode was performed." );
+
+  });
+  });
+
+  function load_full_screen(){
+  document.getElementById('exam_window').requestFullscreen();
+  };
+</script>
+
+
+
+<script type="text/javascript">
+  //script to automatically save responses
+$(document).ready(function() {
+    $("#options").change(function (event) {
+      // alert('Radio Box has been changed!');
+        console.log("form submitted!")
+        save_response();
+// document.getElementById('exam_window').requestFullscreen();
+    });
+});
+
+
+    function save_response(){
+        $('#response_status').html('Saving........'); 
+        // var selected_option=document.getElementById('option').value;
+
+        var question_id=document.getElementById('question_card').value;
+        var answer_type=document.getElementById('answer_type').value;
+        var selected_option=$("input[name='option']:checked").val();
+        if (answer_type=='choice'){
+          var answer_text=$('#answer_text').val();
+        }else if(answer_type =='text'){
+          var answer_text=$('#answer_text').val();
+        }else if(answer_type =='code'){
+          // runit()
+          var answer_text=document.getElementById("answer_text").innerHTML;
+          // var yourcode=$('#yourcode').val();
+          var yourcode = editor.getDoc().getValue();
+          console.log('answer_text',answer_text,'yourcode',yourcode)
+        }
+        
+
+
+      if(answer_type=='choice'){
+            $.ajax({
+              type: "POST",
+              url: '/exam/save_response/',
+              data: {
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                'selected_response': selected_option,
+                'question_id':question_id,
+              },
+              
+              success: function (data) {
+              $('#response_status').html(data);  
+              },
+
+              });
+    }else if(answer_type=='text'){
+            console.log('text type answer')
+
+            $.ajax({
+              type: "POST",
+              url: '/exam/save_response/',
+              data: {
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                'selected_response': answer_text,
+                'question_id':question_id,
+              },
+              
+              success: function (data) {
+                console.log('not code')
+              $('#response_status').html(data);  
+              },
+
+              });
+
+    }else if(answer_type=='code'){
+            $.ajax({
+              type: "POST",
+              url: '/exam/save_response/',
+              data: {
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                'selected_response': answer_text,
+                'question_id':question_id,
+                'user_code':yourcode,
+              },
+              
+              success: function (data) {
+                console.log('code')
+              $('#response_status').html(data);  
+              },
+
+              });
+    };
+
+    };
+
+
+  </script>
+
+
+
+<script>
+// Add active class to the current button (highlight it)
+var header = document.getElementById("nav_buttons");
+var btns = header.getElementsByTagName("button");
+// console.log(btns)
+btns[0].className += " active";
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+    // this.className += " active";
+  var current = header.getElementsByClassName("active");
+  current[0].className = current[0].className.replace(" active", "");
+  this.className += " active";
+  });
+}
+</script> 
+
+
+<script type="text/javascript">
+  //Run timer and end test when time approach '00:00'
+document.getElementById('timer').innerHTML =
+  {{time_left_mins}} + ":" + {{time_left_secs}};
+startTimer();
+
+function startTimer() {
+  var presentTime = document.getElementById('timer').innerHTML;
+  var timeArray = presentTime.split(/[:]+/);
+  var m = timeArray[0];
+  var s = checkSecond((timeArray[1] - 1));
+  if(s==59){m=m-1}
+  //if(m<0){alert('timer completed')}
+  if(m<0){  location.replace("/exam/end/")};
+  document.getElementById('timer').innerHTML =
+    m + ":" + s;
+  // console.log(m)
+  setTimeout(startTimer, 1000);
+}
+
+function checkSecond(sec) {
+  if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
+  if (sec < 0) {sec = "59"};
+  return sec;
+}
+</script>
+
+
+<script type="text/javascript">
+//script to load next, previous questions
+  function next_question(){
+      var header = document.getElementById("nav_buttons");
+      var btns = header.getElementsByTagName("button");
+      var btns_length = btns.length
+      for (i = 0; i < btns.length; i++) {
+
+      var cls=btns[i].className
+      if (cls.includes("active")){
+        console.log(i,btns[i].className)
+        if (i==btns.length-1){
+          console.log('you have reached the end')
+          document.getElementById('previous_next_status').innerHTML='<div id="previous_next_status" class="alert alert-danger" >you have reached the end question</div>'
+          setTimeout(reset_status,2000)
+        }else{
+        btns[i+1].click()  
+        }
+        
+        break;
+      };
+
+      }
+
+  };
+  function previous_question(){
+      var header = document.getElementById("nav_buttons");
+      var btns = header.getElementsByTagName("button");
+      var btns_length = btns.length
+
+      for (i = 0; i < btns.length; i++) {
+
+      var cls=btns[i].className
+      if (cls.includes("active")){
+        console.log(i,btns[i].className)
+
+        if (i==0){
+          // document.getElementById('previous_button').disabled=true;
+          console.log('you have reached the start')
+          document.getElementById('previous_next_status').innerHTML='<div id="previous_next_status" class="alert alert-danger" >you have reached the starting question</div>'
+
+          setTimeout(reset_status,2000)
+        }else{
+        btns[i-1].click()  
+        }
+
+        break;
+      };
+
+      }
+    
+  }
+
+  function reset_status() {
+  document.getElementById('previous_next_status').innerHTML=''
+  }
+</script>
+
+
+
+
+<script type="text/javascript">
+//script to populate questions automatically
+    function get_question(category,question_index) {
+
+      var category=category;
+      var question_index=question_index;
+      // console.log(category,question_index) 
+
+      $.ajax({
+        type: "POST",
+        url: '/exam/question/',
+        data: {
+          csrfmiddlewaretoken: '{{ csrf_token }}',
+          'category': category,
+          'question_index':question_index,
+        },
+        success: function (data) {
+          // console.log(data)
+          var data = JSON.parse(data)
+          var question_text = data.question_text
+          var options = data.options
+          var option_response=data.option_response
+          var question_id=data.question_id
+          var image_url=data.image_url
+          var answer_type=data.answer_type
+          var answer_text = data.answer_text
+          var marks = data.marks
+          var user_code = data.user_code
+          var starter_code = data.starter_code
+          // console.log(question_id,options)
+          // console.log('user_code',user_code)
+
+
+          
+          // $('#question_text').html(question_text);  
+          $('#response_status').html('Status');
+          document.getElementById("options").innerHTML="";
+          document.getElementById('question_image').innerHTML = ""
+
+          if (question_text !=null){
+          document.getElementById('question_text').innerHTML = question_text;
+          }else{
+            document.getElementById('question_text').innerHTML = "";
+          }
+
+
+          if (answer_type=='choice'){
+
+          if(options[0]){
+          document.getElementById("options").innerHTML+='<input type="radio" class="option-input radio" id="radio_1" name="option" value="1"><label id="option1" name="option1">'+options[0]+'</label><br>'
+          };
+
+          if(options[1]){
+          document.getElementById("options").innerHTML+='<input type="radio" class="option-input radio" id="radio_2" name="option" value="2"><label id="option2" name="option2">'+options[1]+'</label><br>'
+          };
+
+          if(options[2]){
+          document.getElementById("options").innerHTML+='<input type="radio" class="option-input radio" id="radio_3" name="option" value="3"><label id="option3" name="option3">'+options[2]+'</label><br>'
+          };
+
+          if(options[3]){
+          document.getElementById("options").innerHTML+='<input type="radio" class="option-input radio" id="radio_4" name="option" value="4"><label id="option4" name="option4">'+options[3]+'</label><br>'
+          };
+
+          if(options[4]){
+          document.getElementById("options").innerHTML+='<input type="radio" class="option-input radio" id="radio_5" name="option" value="5"><label id="option5" name="option5">'+options[4]+'</label><br>'
+          };
+
+          // $('#option'+option_response).checked=true; 
+          if (option_response != null) {
+          var selected_option='radio_'+option_response
+          // console.log(options,selected_option)
+          document.getElementById(selected_option).checked = true;
+          };
+        };
+
+        //load input text when answer type is text
+        if(answer_type=='text'){
+          // console.log(answer_text)
+              if(answer_text==null){
+              document.getElementById("options").innerHTML+='<label for="answer_text">Enter your answer</label><input type="textarea" id="answer_text" name="fname" value=""><br>'
+              }else{
+                document.getElementById("options").innerHTML+='<label for="answer_text">Enter your answer</label><input type="text" id="answer_text" name="fname" value="'+ answer_text +'"><br>'
+              };
+        };
+
+
+if (answer_type=='code'){
+  console.log('answer_text',answer_text)
+    if(answer_text==null){
+        if (user_code!= null){
+              document.getElementById("options").innerHTML+=
+        '<textarea id="yourcode" class="form-control" cols="40" rows="10">'+user_code+'</textarea><br /> <pre id="answer_text" class="form-control" ></pre><br> <button type="button" class="btn-primary" onclick="runit()">Run</button> '
+      }else{
+        document.getElementById("options").innerHTML+=
+        '<textarea id="yourcode" class="form-control" cols="40" rows="10">'+starter_code+'</textarea><br /> <pre id="answer_text" class="form-control" ></pre><br> <button type="button" class="btn-primary" onclick="runit()">Run</button> '
+      }
+
+    }else{
+        if (user_code!= null){
+          console.log('user_code',user_code)
+          document.getElementById("options").innerHTML+=
+      '<textarea id="yourcode" class="form-control" cols="40" rows="10">'+user_code+'</textarea><br /> <pre id="answer_text"  class="form-control" >'+ answer_text +'</pre><br> <button type="button" class="btn-primary" onclick="runit()">Run</button> '
+          }else{
+            console.log('starter_code',starter_code)
+          document.getElementById("options").innerHTML+=
+      '<textarea id="yourcode" class="form-control" cols="40" rows="10">'+starter_code+'</textarea><br /> <pre id="answer_text"  class="form-control" >'+ answer_text +'</pre><br> <button type="button" class="btn-primary" onclick="runit()">Run</button> '
+          }
+
+      }
+
+        editor=CodeMirror.fromTextArea(document.getElementById('yourcode'), {
+          lineNumbers: true,
+          tabSize: 4,
+          indentUnit: 4,
+          // value: 'console.log("Hello, World");',
+            mode: {
+                name: "python",
+                version: 2,
+                singleLineStringErrors: false
+            },
+        });
+};
+
+
+
+        document.getElementById("marks").innerHTML=''
+        if(marks){
+          document.getElementById("marks").innerHTML+=marks+'-Mark Question'
+        }
+        // console.log('image_url',image_url)
+        //load image when url exists
+        if(image_url != null){
+
+          document.getElementById('question_image').innerHTML+='<img id="question_image" src="'+image_url+'" >'
+        }else{
+          // document.getElementById('question_image').innerHTML+='<img id="question_image" src="'+image_url+'" >'
+        }
+
+        //save quesion id in parameter 'question_card'
+          document.getElementById('question_card').value=question_id;
+          document.getElementById('answer_type').value=answer_type;
+
+        },
+
+        });
+
+
+    };
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+$(document).ready(function () {
+    //Disable full page
+    $('body').bind('cut copy paste', function (e) {
+        console.log('copy not permitted')
+        e.preventDefault();
+    });
+     
+    //Disable part of page
+    $('#id').bind('cut copy paste', function (e) {
+        console.log('copy not permitted')
+
+        e.preventDefault();
+    });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function () {
+    //Disable full page
+    $("body").on("contextmenu",function(e){
+        return false;
+    });
+     
+    //Disable part of page
+    $("#id").on("contextmenu",function(e){
+        return false;
+    });
+});
+</script>
+
+
+
+<script>
+  // script to implement window change events
+  $(window).focus(function(){
+  //your code
+    // document.getElementById('exam_window').requestFullscreen();
+
+});
+var x=1
+$(window).blur(function(){
+  //your code here\
+  
+  setTimeout(function(){ 
+          // alert('Radio Box has been changed!');
+          x+=1
+          // console.log('x',x)
+          document.getElementById("modal_text").innerHTML="Warning:- Change of window is not permitted. This will result in disqualification of the candidature."
+          $("#myModal").modal('show');
+
+          
+      // document.getElementById('exam_window').requestFullscreen();
+      }, 1000);
+});
+
+</script>
+
+<script type="text/javascript"> 
+// output functions are configurable.  This one just appends some text
+// to a pre element.
+function outf(text) { 
+    var mypre = document.getElementById("answer_text"); 
+    // console.log('text',text)
+    mypre.innerHTML =mypre.innerHTML + text; 
+    save_response()
+} 
+function builtinRead(x) {
+    if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+            throw "File not found: '" + x + "'";
+    return Sk.builtinFiles["files"][x];
+}
+
+// Here's everything you need to run a python program in skulpt
+// grab the code from your textarea
+// get a reference to your pre element for output
+// configure the output function
+// call Sk.importMainWithBody()
+function runit() { 
+   // var prog = document.getElementById("yourcode").value;
+
+   var prog = editor.getDoc().getValue();
+   // prog+='print("mahesh")'  
+   console.log('prog',prog)
+   var mypre = document.getElementById("answer_text"); 
+   mypre.innerHTML = ''; 
+   Sk.pre = "output";
+   Sk.configure({output:outf, read:builtinRead}); 
+   (Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target = 'mycanvas';
+   var myPromise = Sk.misceval.asyncToPromise(function() {
+       return Sk.importMainWithBody("<stdin>", false, prog, true);
+   });
+   myPromise.then(function(mod) {
+       console.log('success');
+   },
+       function(err) {
+      mypre.innerHTML=err.toString()
+      save_response()
+       console.log('error python ');
+   });
+   
+} 
+</script> 
+
+<!-- <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.css">
+</link>
+
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.js">
+</script>
+
+<script type="text/javascript">
+CodeMirror.fromTextArea(document.getElementById('yourcode'), {
+  lineNumbers: true,
+  tabSize: 2,
+  value: 'console.log("Hello, World");'
+});
+</script> -->
+
+
+
+<!-- <script type="text/javascript">
+  
+$("input[type='radio']").change(function () {
+         $(this).attr('checked_status', true);
+});
+
+$("input[type='radio']").click(function () {
+    if ($(this).attr('checked_status')) {
+        $(this).prop('checked', false);
+        $(this).attr('checked_status', false);
+    }
+});
+</script> -->
+
+<!-- <script type="text/javascript">
+  //script to populate existing question/answer template 
+
+    function get_question(category,question_index) {
+
+      var category=category;
+      var question_index=question_index;
+      // console.log(category,question_index) 
+
+      $.ajax({
+        type: "POST",
+        url: '/exam/question/',
+        data: {
+          csrfmiddlewaretoken: '{{ csrf_token }}',
+          'category': category,
+          'question_index':question_index,
+        },
+        success: function (data) {
+          // console.log(data)
+          var data = JSON.parse(data)
+          var question_text = data.question_text
+          var options = data.options
+          var option_response=data.option_response
+          var question_id=data.question_id
+          console.log(question_id,options)
+
+
+          document.getElementById('question_text').innerHTML = question_text;
+          $('#question_text').html(question_text);  
+          $('#response_status').html('Status'); 
+
+          document.getElementById("options").reset();
+          document.getElementById('option1').innerHTML = options[0];
+          document.getElementById('option2').innerHTML = options[1];
+          document.getElementById('option3').innerHTML = options[2];
+          document.getElementById('option4').innerHTML = options[3];
+          // $('#option'+option_response).checked=true; 
+
+          document.getElementById('question_card').value=question_id;
+
+          if (option_response) {
+          var selected_option='radio_'+option_response
+          // console.log(options,selected_option)
+          document.getElementById(selected_option).checked = true;
+          }
+
+
+          // document.getElementById('option5').innerHTML = options[4];
+
+        },
+
+        });
+    };
+</script> -->
+
+<!--     <script>
+        document.addEventListener("keydown", function(e) {
+            //tab keyCode===9
+            //I hope to prevent alt+tab event action in windows
+            if (e.altKey && e.keyCode === 9) {
+                e.preventDefault(); //why not come in?
+                console.log('alt tab  ')
+            }
+        }, false)
+    </script> -->
+  
+</body>
+</html>
+

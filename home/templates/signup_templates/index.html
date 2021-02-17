@@ -1,0 +1,22 @@
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>GoPython</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+<div class="h-100 align-items-center d-flex justify-content-center">
+    <div>
+      <div>
+        {% if user.is_authenticated %}
+            <h2>Hello {{ user.username }}</h2>
+        {% else %}
+            <h2>Register or Login if you'd like to</h2>
+        {% endif %}
+      </div>
+    </div>
+</div>
+</body>
+</html>
