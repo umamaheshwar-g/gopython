@@ -57,7 +57,8 @@ def user_login(request):
                     return HttpResponseRedirect(next_url)
                 else:
                     # return HttpResponseRedirect(reverse('quiz:start'))
-                    return HttpResponseRedirect(reverse('quiz:generate'))
+                    # return HttpResponseRedirect(reverse('quiz:generate'))
+                    return HttpResponseRedirect(reverse('home'))
                     # return redirect('/user_login/')
             else:
                 return HttpResponse("Your account was inactive.")
