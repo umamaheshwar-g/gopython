@@ -37,4 +37,9 @@ urlpatterns = [
 
     url(r'^quiz/', include('quiz.urls')),
 
+
+
+    url(r'^api/quiz/', include('quiz.api.urls', namespace='api-quiz')),
+
+
 ]

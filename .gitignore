@@ -125,5 +125,9 @@ dmypy.json
 # visual studio stuff
 .github
 
+# python environment stuff
+go_py
+
+
 # manally added
 /static
